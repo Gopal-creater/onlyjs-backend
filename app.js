@@ -10,6 +10,7 @@ import userRouter from "./routes/userRoutes.js";
 import tutorialRouter from "./routes/tutorialRoutes.js";
 import topicRouter from "./routes/topicRoutes.js";
 import compression from "compression";
+import cors from "cors";
 
 // Loading the env file
 dotenv.config({ path: "./config.env" });
@@ -19,6 +20,10 @@ const app = express();
 
 //trust proxies
 app.enable("trust proxy");
+
+//Implement cors
+app.use(cors());
+app.options("*", cors()); // enable pre-flight request
 
 //Global Middlewares-------
 //Set security  HTTP headers
