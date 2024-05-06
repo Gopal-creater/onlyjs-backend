@@ -4,8 +4,7 @@ import initilizeAdmin from "./utils/initilizeAdmin.js";
 
 //Handle uncaught exceptions
 process.on("uncaughtException", (err) => {
-  console.log(err.name, err.message, err);
-  console.log("UNCAUGHT EXCEPTION! Shutting down...");
+  console.log("UNCAUGHT EXCEPTION! Shutting down...", err);
   process.exit(1);
 });
 
@@ -25,8 +24,7 @@ const server = app.listen(port, () => {
 
 //Handle unhandled rejection on promises
 process.on("unhandledRejection", (err) => {
-  console.log(err.name, err.message, err);
-  console.log("UNHANDLED REJECTION! Shutting down...");
+  console.log("UNHANDLED REJECTION! Shutting down...", err);
   server.close(() => {
     process.exit(1);
   });
