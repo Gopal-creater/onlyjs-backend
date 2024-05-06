@@ -1,0 +1,13 @@
+# Ignore operating system files
+.DS_Store
+
+# Ignore IDE or editor files
+.vscode/
+
+# Ignore dependency directories or files
+node_modules/
+venv/
+package-lock.json
+*.egg-info/
+
+*.env

@@ -3,13 +3,14 @@
   "version": "0.0.0",
   "private": true,
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "NODE_ENV=development nodemon server.js",
+    "start": "node server.js",
+    "dev": "NODE_ENV=development nodemon server.js",
     "start:prod": "NODE_ENV=production nodemon server.js",
     "build": "echo 'Running build script'"
   },
   "dependencies": {
     "bcrypt": "^5.1.1",
+    "compression": "^1.7.4",
     "cookie-parser": "~1.4.4",
     "debug": "~2.6.9",
     "dompurify": "^3.1.2",
@@ -29,5 +30,8 @@
     "validator": "^13.11.0",
     "xss-clean": "^0.1.4"
   },
-  "type": "module"
+  "type": "module",
+  "engines": {
+    "node": ">=10.0.0"
+  }
 }

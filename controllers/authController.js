@@ -174,7 +174,6 @@ class AuthController {
         message: "Token sent to email",
       });
     } catch (err) {
-      console.log("Error", err);
       user.passwordResetToken = undefined;
       user.passwordResetTokenExpires = undefined;
 

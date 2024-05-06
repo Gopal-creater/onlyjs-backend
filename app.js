@@ -9,10 +9,12 @@ import xss from "xss-clean";
 import userRouter from "./routes/userRoutes.js";
 import tutorialRouter from "./routes/tutorialRoutes.js";
 import topicRouter from "./routes/topicRoutes.js";
+import compression from "compression";
 
 // Loading the env file
 dotenv.config({ path: "./config.env" });
 
+//Start the application
 const app = express();
 
 //Global Middlewares-------
@@ -47,6 +49,9 @@ app.use(xss());
 
 /* parses the incoming request body containing JSON data This allows you to easily work with the JSON data */
 app.use(express.json({ limit: "10kb" }));
+
+//Compression middleware to compress texts
+app.use(compression());
 
 //Routes----------
 app.get("/", (req, res) => {
