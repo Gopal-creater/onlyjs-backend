@@ -6,7 +6,7 @@ import crypto from "crypto";
 import jwt from "jsonwebtoken";
 
 class AuthController {
-  createSendToken = async (user, statusCode, res) => {
+  createSendToken = async (user, statusCode, req, res) => {
     const token = await this.signToken(user._id);
 
     const cookieOptions = {
@@ -35,7 +35,7 @@ class AuthController {
       password: req.body.password,
       passwordConfirm: req.body.passwordConfirm,
     });
-    this.createSendToken(newUser, 201, res);
+    this.createSendToken(newUser, 201, req, res);
   });
 
   signToken = (id) => {
@@ -85,7 +85,7 @@ class AuthController {
     }
 
     //If everything of send response
-    this.createSendToken(user, 200, res);
+    this.createSendToken(user, 200, req, res);
   });
 
   protect = catchAsync(async (req, res, next) => {
@@ -212,7 +212,7 @@ class AuthController {
     await user.save();
 
     //If everything ok log the user in and send token
-    this.createSendToken(user, 200, res);
+    this.createSendToken(user, 200, req, res);
   });
 
   updatePassword = catchAsync(async (req, res, next) => {
@@ -232,7 +232,7 @@ class AuthController {
     await user.save();
 
     //Log the user in and send token
-    this.createSendToken(user, 200, res);
+    this.createSendToken(user, 200, req, res);
   });
 }
 
