@@ -1,0 +1,33 @@
+{
+  "name": "onlyjs",
+  "version": "0.0.0",
+  "private": true,
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "NODE_ENV=development nodemon server.js",
+    "start:prod": "NODE_ENV=production nodemon server.js",
+    "build": "echo 'Running build script'"
+  },
+  "dependencies": {
+    "bcrypt": "^5.1.1",
+    "cookie-parser": "~1.4.4",
+    "debug": "~2.6.9",
+    "dompurify": "^3.1.2",
+    "dotenv": "^16.4.4",
+    "express": "^4.18.2",
+    "express-mongo-sanitize": "^2.2.0",
+    "express-rate-limit": "^7.2.0",
+    "helmet": "^7.1.0",
+    "hpp": "^0.2.3",
+    "http-errors": "~1.6.3",
+    "jade": "~1.11.0",
+    "jsdom": "^24.0.0",
+    "jsonwebtoken": "^9.0.2",
+    "mongoose": "^8.3.2",
+    "morgan": "^1.10.0",
+    "nodemailer": "^6.9.13",
+    "validator": "^13.11.0",
+    "xss-clean": "^0.1.4"
+  },
+  "type": "module"
+}
