@@ -31,3 +31,12 @@ process.on("unhandledRejection", (err) => {
     process.exit(1);
   });
 });
+
+//Handle unhandled rejection on promises
+process.on("SIGTERM", (err) => {
+  console.log("Sigterm received! Shutting down...");
+  server.close(() => {
+    // process.exit(1);
+    console.log("Process terminated");
+  });
+});

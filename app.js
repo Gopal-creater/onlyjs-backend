@@ -17,6 +17,9 @@ dotenv.config({ path: "./config.env" });
 //Start the application
 const app = express();
 
+//trust proxies
+app.enable("trust proxy");
+
 //Global Middlewares-------
 //Set security  HTTP headers
 app.use(helmet());
