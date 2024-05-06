@@ -24,9 +24,7 @@ class AuthController {
 
     res.status(statusCode).json({
       status: "success",
-      data: {
-        user,
-      },
+      data: user,
     });
   };
 
