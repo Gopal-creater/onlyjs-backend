@@ -32,7 +32,7 @@ process.on("unhandledRejection", (err) => {
   });
 });
 
-//Handle unhandled rejection on promises
+//Handle SIGTERM
 process.on("SIGTERM", (err) => {
   console.log("Sigterm received! Shutting down...");
   server.close(() => {
