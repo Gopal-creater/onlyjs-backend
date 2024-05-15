@@ -9,7 +9,11 @@ process.on("uncaughtException", (err) => {
 });
 
 const port = process.env.PORT || 3000;
-const DB = process.env.DB.replace("<password>", process.env.DB_PWD);
+
+const DB =
+  process.env.NODE_ENV === "development"
+    ? process.env.DB
+    : process.env.DB.replace("<password>", process.env.DB_PWD);
 
 //Connection to mongodb
 mongoose.connect(DB).then((con) => {

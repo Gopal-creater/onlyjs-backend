@@ -1,4 +1,5 @@
 import mongoose from "mongoose";
+import mongoosePaginate from "mongoose-paginate-v2";
 
 const tutorialSchema = new mongoose.Schema(
   {
@@ -30,6 +31,8 @@ const tutorialSchema = new mongoose.Schema(
   },
   { timestamps: true }
 );
+
+tutorialSchema.plugin(mongoosePaginate);
 
 const Tutorial = mongoose.model("Tutorial", tutorialSchema);
 

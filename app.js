@@ -13,7 +13,11 @@ import compression from "compression";
 import cors from "cors";
 
 // Loading the env file
-dotenv.config({ path: "./config.env" });
+if (process.env.NODE_ENV === "development") {
+  dotenv.config({ path: "./devConfig.env" });
+} else {
+  dotenv.config({ path: "./config.env" });
+}
 
 //Start the application
 const app = express();

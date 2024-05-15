@@ -70,14 +70,16 @@ class HandlerFactory {
       const features = new APIFeatures(Model.find(), req.query)
         .filter()
         .sort()
-        .limitFields()
-        .paginate();
-      const docs = await features.query;
+        .limitFields();
+
+      const results = await Model.paginate(features.query, {
+        page: req.query.page * 1 || 1,
+        limit: req.query.limit * 1 || 100,
+      });
 
       res.status(200).json({
         status: "success",
-        results: docs.length,
-        data: docs,
+        data: results,
       });
     });
 }
