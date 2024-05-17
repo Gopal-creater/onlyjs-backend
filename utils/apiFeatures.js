@@ -5,7 +5,8 @@ class APIFeatures {
   }
 
   filter() {
-    const queryObj = { ...this.queryString };
+    console.log("Original Query Object", this.queryObject);
+    const queryObj = { ...this.queryObject };
     const excludedFields = ["page", "sort", "limit", "fields"];
     excludedFields.forEach((el) => delete queryObj[el]);
 
@@ -35,6 +36,21 @@ class APIFeatures {
       this.query = this.query.select("-__v");
     }
     return this;
+  }
+
+  removeQuotesFromObject(obj) {
+    const newObj = {};
+    for (const key in obj) {
+      if (Object.prototype.hasOwnProperty.call(obj, key)) {
+        let value = obj[key];
+        if (typeof value === "string") {
+          // Remove all single and double quotes from the string value
+          value = value.replace(/['"]/g, "");
+        }
+        newObj[key] = value;
+      }
+    }
+    return newObj;
   }
 }
 
