@@ -9,6 +9,7 @@
     "build": "echo 'Running build script'"
   },
   "dependencies": {
+    "api-query-params": "^5.4.0",
     "bcrypt": "^5.1.1",
     "compression": "^1.7.4",
     "cookie-parser": "~1.4.4",

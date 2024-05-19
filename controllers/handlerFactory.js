@@ -1,6 +1,6 @@
 import AppError from "../utils/appError.js";
 import catchAsync from "../utils/catchAsync.js";
-import APIFeatures from "../utils/apiFeatures.js";
+import aqp from "api-query-params";
 
 class HandlerFactory {
   deleteOne = (Model) =>
@@ -67,15 +67,25 @@ class HandlerFactory {
 
   getAll = (Model) =>
     catchAsync(async (req, res) => {
-      const features = new APIFeatures(Model.find(), req.query)
-        .filter()
-        .sort()
-        .limitFields();
+      // Parse query parameters using api-query-params
+      const { filter, skip, limit, sort, projection, population } = aqp(
+        req.query
+      );
 
-      const results = await Model.paginate(features.query, {
+      //Deleting if any page sort and limit and fields exist in filter
+      const excludedFields = ["page", "sort", "limit", "fields"];
+      excludedFields.forEach((el) => delete filter[el]);
+
+      // Options for mongoose-paginate-v2
+      const options = {
         page: req.query.page * 1 || 1,
-        limit: req.query.limit * 1 || 100,
-      });
+        limit: req.query.limit * 1 || 10,
+        sort: sort || {},
+        select: projection || "",
+        populate: population || "",
+      };
+
+      const results = await Model.paginate(filter, options);
 
       res.status(200).json({
         status: "success",
