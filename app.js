@@ -26,7 +26,11 @@ const app = express();
 app.enable("trust proxy");
 
 //Implement cors
-app.use(cors());
+app.use(
+  cors({
+    credentials: true,
+  })
+);
 app.options("*", cors()); // enable pre-flight request
 
 //Global Middlewares-------
