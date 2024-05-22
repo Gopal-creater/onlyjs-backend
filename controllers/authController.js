@@ -15,6 +15,7 @@ class AuthController {
       ),
       httpOnly: true,
       secure: req.secure || req.headers["x-forwarded-proto"] === "https",
+      sameSite: "none",
     };
 
     res.cookie("jwt", token, cookieOptions);
