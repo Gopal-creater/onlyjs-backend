@@ -127,7 +127,7 @@ class AuthController {
 
     //Grant acces to protected route
     req.user = freshUser;
-    next();
+    return next();
   });
 
   restrictTo = (roles) => {

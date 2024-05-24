@@ -17,7 +17,7 @@ userRouter
 //Routes to update and delete user by themself
 userRouter
   .route("/me")
-  .get(authController.protect, userController.getMe, userController.getUser);
+  .get(authController.protect, userController.getMe, userController.getUser());
 userRouter
   .route("/update-me")
   .patch(authController.protect, userController.updateMe);

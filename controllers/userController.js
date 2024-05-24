@@ -14,10 +14,10 @@ class UserController {
     return newObj;
   };
 
-  getMe = (req, res, next) => {
+  getMe(req, res, next) {
     req.params.id = req.user.id;
-    next();
-  };
+    return next();
+  }
 
   updateMe = catchAsync(async (req, res, next) => {
     //Dont allow user to update password
