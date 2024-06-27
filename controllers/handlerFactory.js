@@ -17,6 +17,23 @@ class HandlerFactory {
       });
     });
 
+  deleteOneBySlug = (Model) =>
+    catchAsync(async (req, res, next) => {
+      const { slug } = req.params;
+
+      // Find the document by slug and delete it
+      const doc = await Model.findOneAndDelete({ slug });
+
+      if (!doc) {
+        return next(new AppError("No document found with that slug", 404));
+      }
+
+      res.status(200).json({
+        status: "success",
+        data: null,
+      });
+    });
+
   updateOne = (Model) =>
     catchAsync(async (req, res, next) => {
       const doc = await Model.findOneAndUpdate(
@@ -30,6 +47,24 @@ class HandlerFactory {
 
       if (!doc) {
         return next(new AppError("No document found with that ID", 404));
+      }
+
+      res.status(200).json({
+        status: "success",
+        data: doc,
+      });
+    });
+
+  updateOneBySlug = (Model) =>
+    catchAsync(async (req, res, next) => {
+      const filter = { slug: req.params.slug };
+      const doc = await Model.findOneAndUpdate(filter, req.body, {
+        new: true, // Return the updated document
+        runValidators: true, // Validate the update against the model's schema
+      });
+
+      if (!doc) {
+        return next(new AppError("No document found with that slug", 404));
       }
 
       res.status(200).json({
@@ -57,6 +92,23 @@ class HandlerFactory {
 
       if (!doc) {
         return next(new AppError("No document found with that ID", 404));
+      }
+
+      res.status(200).json({
+        status: "success",
+        data: doc,
+      });
+    });
+
+  getOneBySlug = (Model, popOptions) =>
+    catchAsync(async (req, res, next) => {
+      let query = Model.findOne({ slug: req.params.slug });
+      if (popOptions) query = query.populate(popOptions);
+
+      const doc = await query;
+
+      if (!doc) {
+        return next(new AppError("No document found with that slug", 404));
       }
 
       res.status(200).json({

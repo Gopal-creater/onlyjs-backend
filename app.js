@@ -7,10 +7,9 @@ import helmet from "helmet";
 import expressMongoSanitize from "express-mongo-sanitize";
 import xss from "xss-clean";
 import userRouter from "./routes/userRoutes.js";
-import tutorialRouter from "./routes/tutorialRoutes.js";
-import topicRouter from "./routes/topicRoutes.js";
 import compression from "compression";
 import cors from "cors";
+import blogRouter from "./routes/blogRoutes.js";
 
 // Loading the env file
 if (process.env.NODE_ENV === "development") {
@@ -72,12 +71,11 @@ app.use(compression());
 
 //Routes----------
 app.get("/", (req, res) => {
-  res.send("onlyjs project By Gopal Gautam!");
+  res.send("Onlyjs project By Gopal Gautam!");
 });
 
-app.use("/api/v1/tutorials", tutorialRouter);
+app.use("/api/v1/blogs", blogRouter);
 app.use("/api/v1/users", userRouter);
-app.use("/api/v1/topics", topicRouter);
 
 //Global Errorn Handler
 app.use(globalErrorHandler);
